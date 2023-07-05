@@ -5,7 +5,7 @@
  * Plugin Name:       Primary ICT Support - Themify Builder Add-ons
  * Plugin URI:        www.primaryictsupport.co.uk
  * Description:       Primary ICT Support plugin to add additional features to the Themify builder. Sub & Side Menu Module, PDF Viewer Module.
- * Version:           0.0.1
+ * Version:           0.0.2
  * Author:            John Emmett
  * Author URI:        www.primaryictsupport.co.uk
  * License:           GPL-2.0+
@@ -27,13 +27,13 @@ define('PICTS_TBADDON_BASENAME', plugin_basename(__FILE__));
  **/
 
 // GIT HUB Updater
-//if( ! class_exists( 'Picts_Updater' ) ){
-//    include_once( plugin_dir_path( __FILE__ ) . 'inc/updater/updater.php' );
-//}
-//$updater = new Picts_Updater( __FILE__ );
-//$updater->set_username( 'primaryict' );
-//$updater->set_repository( 'picts-newsletters' );
-//$updater->initialize();
+if (!class_exists('Picts_Updater')) {
+    include_once(plugin_dir_path(__FILE__) . 'inc/updater/updater.php');
+}
+$updater = new Picts_Updater(__FILE__);
+$updater->set_username('primaryict');
+$updater->set_repository('picts-builder-addons');
+$updater->initialize();
 
 
 function picts_register_module()
@@ -46,3 +46,8 @@ add_action('themify_builder_setup_modules', 'picts_register_module');
 
 // Sub Menu Addon File
 include_once(PICTS_TBADDON_PLUGIN_URI . 'inc/sub-menu.php');
+
+// Add Picts PDF Viewer is it doesn't already exist
+if (!class_exists('PictsPDFViewer')) {
+    include_once(plugin_dir_path(__FILE__) . 'inc/PictsPDFViewer.php');
+}

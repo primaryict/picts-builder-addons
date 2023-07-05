@@ -1,0 +1,163 @@
+/*
+ * Primary ICT support Plugin to display subpages
+ *
+ */
+
+.picts_sub_page_list_wrapper {
+    padding: 0px;
+}
+
+.picts_sub_page_list .dashicons,
+.dashicons-before:before {
+    font-family: dashicons !important;
+}
+
+.picts_sub_page_list {
+    margin: 10px 0 0 0;
+    padding: 0px;
+}
+
+.picts_sub_page_list .children,
+.picts_sub_page_list .sub-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.picts_sub_page_list li {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.picts_sub_page_list li a:not(.dropDown) {
+    display: block;
+    padding: 6px 0;
+}
+
+.picts_sub_page_list .children,
+.picts_sub_page_list .sub-menu {
+    width: 100%;
+    display: none;
+    padding-left: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-left: 1px solid #efefef36;
+    font-size: 80%;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.picts_sub_page_list li a {
+    padding: 0;
+    margin: 0;
+    line-height: 1.2em;
+    /*display: block;*/
+}
+
+.picts_sub_page_list .children a,
+.picts_sub_page_list .sub-menu a {
+    font-size: 0.85em;
+}
+
+.picts_sub_page_list .page_item_has_children a:first-of-type,
+.picts_sub_page_list .menu-item-has-children a:first-of-type {
+    flex-basis: calc(100% - 30px);
+}
+
+.dropDown {
+    display: none;
+}
+
+.picts_sub_page_list li.page_item_has_children>.dropDown,
+.menuList li.menu-item-has-children>.dropDown {
+    padding: 5px;
+    margin: 0;
+    border-radius: 50%;
+    background: #efefef;
+    line-height: 1em;
+    display: block;
+    aspect-ratio: 1;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.picts_sub_page_list li .dropDown span {
+    color: #333 !important;
+
+}
+
+.picts_sub_page_list li .dropDown:hover {
+    text-decoration: none;
+}
+
+.picts_sub_page_block_list {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.picts_sub_page_block_list .page_block_item {
+    -webkit-flex: 1 1 calc(25% - 42px);
+    -ms-flex: 1 1 calc(25% - 42px);
+    flex: 1 1 calc(25% - 42px);
+    -webkit-align-self: stretch;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    margin: 10px;
+    padding: 10px 10px 10px 10px;
+    /* border: 1px solid #dddddd;
+        background: #efefef; */
+    transition: all ease 0.2s;
+}
+
+.picts_sub_page_block_list .page_block_item:hover {
+    /* background: #d7d7d7; */
+    text-decoration: none;
+}
+
+.picts_sub_page_block_list .page_block_item a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.picts_sub_page_block_list .page_block_item a img {
+    margin: 0 0 20px 0;
+    padding: 0;
+    height: 100px;
+    width: auto;
+}
+
+.picts_sub_page_block_list .page_block_item a h4 {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.2em;
+}

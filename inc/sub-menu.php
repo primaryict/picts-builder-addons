@@ -14,7 +14,10 @@ if (!defined('WPINC')) {
  */
 function sub_menu_tb_enqueue()
 {
-    wp_enqueue_style('sub-menu-tb-addon', PICTS_TBADDON_PLUGIN_URI . '/inc/assets/style.css');
+    wp_enqueue_style('picts-sub-menu-tb-addon-css', plugin_dir_url(__FILE__) . '/assets/css/sub-menu.css');
+    wp_enqueue_style('dashicons');
+
+    wp_enqueue_script('picts-sub-menu-tb-addon-js', plugin_dir_url(__FILE__) . '/assets/js/sub-menu.js', array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'sub_menu_tb_enqueue');
 
@@ -45,3 +48,9 @@ class ChildpageBlocksWalker extends Walker_Page
         $output .= '<li class="page_block_item"><a href="' . get_permalink($page->ID) . '">' . $link_title . '</a></li>';
     }
 }
+
+function register_menus()
+{
+    register_nav_menu('sidebar-fallback-menu', __('Sidebar Fallback Menu'));
+}
+add_action('init', 'register_menus');

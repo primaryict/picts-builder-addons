@@ -14,6 +14,11 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 		));
 	}
 
+	public function get_icon()
+	{
+		return 'view-grid';
+	}
+
 	/**
 	 * Module options.
 	 *
@@ -33,9 +38,9 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				'option_js' => true
 			),
 			array(
-				'id' => 'fallback_image',
+				'id' => 'block_menu_icon',
 				'type' => 'image',
-				'label' => __('Fallback Image', 'sub-menu')
+				'label' => __('Block Menu Icon', 'sub-menu')
 			),
 			array('type' => 'custom_css_id')
 		);
@@ -48,7 +53,8 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 	 */
 	public function get_styling()
 	{
-		return array(
+
+		$general = array(
 			//background
 			self::get_expand('bg', array(
 				self::get_tab(array(
@@ -132,20 +138,180 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				))
 			))
 		);
-	}
 
-	/**
-	 * Outputs the visual template, used in frontend editor for preview
-	 *
-	 * @return void
-	 */
-	protected function _visual_template()
-	{
-?>
-		<div class="module module-<?php echo $this->slug; ?>">
-			<p>Preview not available</p>
-		</div>
-<?php
+		$menu_blocks = array(
+			// Background
+			self::get_expand('bg', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_image(array(' .page_block_item'), 'bg_i', 'background-color', 'bg_r', 'bg_p')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_image(array(' .page_block_item:hover'), 'bg_i', 'background-color', 'b_c_t', 'bg_r', 'bg_p', 'h')
+						)
+					)
+				))
+			)),
+			// Border
+			self::get_expand('b', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_border(' .page_block_item', 'b_a_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_border(' .page_block_item:hover', 'b_a_t', 'h')
+						)
+					)
+				))
+			)),
+			// Padding
+			self::get_expand('p', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_padding(' .page_block_item a', 'p_a_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_padding(' .page_block_item a:hover', 'p_a_t', 'h')
+						)
+					)
+				))
+			)),
+			// Rounded Corners
+			self::get_expand('r_c', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_border_radius(' .page_block_item', 'r_c_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_border_radius(' .page_block_item:hover', 'r_c_t', 'h')
+						)
+					)
+				))
+			)),
+			// Shadow
+			self::get_expand('sh', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_box_shadow(array(' .page_block_item'), 'sh_block')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_box_shadow(array(' .page_block_item:hover'), 'sh_block', 'h')
+						)
+					)
+				))
+			))
+		);
+
+		$menu_title = array(
+			// Background
+			self::get_expand('bg', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_image(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'bg_i', 'background_color_title', 'bg_r', 'bg_p')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_image(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'bg_i', 'b_c_t', 'bg_r', 'bg_p', 'h')
+						)
+					)
+				))
+			)),
+			// Font
+			self::get_expand('f', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_font_family(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_family_title'),
+							self::get_color(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_color_title'),
+							self::get_font_size(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_size_title'),
+							self::get_line_height(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'line_height_title'),
+							self::get_letter_spacing(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'l_s_t'),
+							self::get_text_transform(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_t_t'),
+							self::get_font_style(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'f_s_t', 'f_t_b'),
+							self::get_text_decoration(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_d_t'),
+							self::get_text_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_sh_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_font_family(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_f_t', 'h'),
+							self::get_color(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_c_t', null, null, ''),
+							self::get_font_size(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_s_t', '', 'h'),
+							self::get_line_height(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'l_h_t', 'h'),
+							self::get_letter_spacing(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'l_s_t', 'h'),
+							self::get_text_transform(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_t_t', 'h'),
+							self::get_font_style(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_st_t', 'f_t_b', 'h'),
+							self::get_text_decoration(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_d_t', 'h'),
+							self::get_text_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_sh_t', 'h')
+						)
+					)
+				))
+			)),
+			// Padding
+			self::get_expand('p', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_padding(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'p_a_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_padding(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'p_a_t', 'h')
+						)
+					)
+				))
+			)),
+			// Shadow
+			self::get_expand('sh', array(
+				self::get_tab(array(
+					'n' => array(
+						'options' => array(
+							self::get_box_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'sh_t')
+						)
+					),
+					'h' => array(
+						'options' => array(
+							self::get_box_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'sh_t', 'h')
+						)
+					)
+				))
+			))
+		);
+
+		return array(
+			'type' => 'tabs',
+			'options' => array(
+				'g' => array(
+					'options' => $general
+				),
+				'ct' => array(
+					'label' => __('Menu Block', 'themify'),
+					'options' => $menu_blocks
+				),
+				't' => array(
+					'label' => __('Menu Title', 'themify'),
+					'options' => $menu_title
+				),
+			),
+		);
 	}
 }
 
