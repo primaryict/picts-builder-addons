@@ -71,3 +71,10 @@
      /*transition: all ease 0.3s;*/
      transform-origin: top left;
  }
+
+ #picts-tb-pdf .preview-not-available {
+     padding: 30px;
+     display: block;
+     text-align: center;
+
+ }

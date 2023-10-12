@@ -5,7 +5,7 @@
  * Plugin Name:       Primary ICT Support - Themify Builder Add-ons
  * Plugin URI:        www.primaryictsupport.co.uk
  * Description:       Primary ICT Support plugin to add additional features to the Themify builder. Sub & Side Menu Module, PDF Viewer Module.
- * Version:           0.0.2
+ * Version:           0.0.3
  * Author:            John Emmett
  * Author URI:        www.primaryictsupport.co.uk
  * License:           GPL-2.0+
@@ -46,6 +46,9 @@ add_action('themify_builder_setup_modules', 'picts_register_module');
 
 // Sub Menu Addon File
 include_once(PICTS_TBADDON_PLUGIN_URI . 'inc/sub-menu.php');
+
+// Events Shortcode
+// include_once(PICTS_TBADDON_PLUGIN_URI . 'inc/shortcode/events.php');
 
 // Add Picts PDF Viewer is it doesn't already exist
 if (!class_exists('PictsPDFViewer')) {

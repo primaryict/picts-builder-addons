@@ -129,7 +129,7 @@ class PICTS_Pdfviewer_Module extends Themify_Builder_Component_Module
 ?>
         <div class="module module-<?php echo $this->slug; ?>">
             <# if( data.pdf_file ) { #>
-                <div id="picts-pdf">
+                <div id="picts-tb-pdf">
                     <div role="toolbar" id="toolbar" class="toolbar">
                         <div class="left">
                             <div id="pager">
@@ -151,7 +151,7 @@ class PICTS_Pdfviewer_Module extends Themify_Builder_Component_Module
                     </div>
                     <div id="viewport-container">
                         <div role="main" id="viewport">
-                            <h2>Preview Not Available</h2>
+                            <span class="preview-not-available">Preview Not Available</span>
                         </div>
                     </div>
                 </div>

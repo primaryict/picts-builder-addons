@@ -17,13 +17,17 @@ function pdfviewer_tb_enqueue()
     wp_enqueue_style('picts-pdfviewer-tb-addon-css', plugin_dir_url(__FILE__) . '/assets/css/pdfviewer.css');
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css');
 
-    wp_enqueue_script('pdf-js', 'https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js', array(), false, true);
-    wp_enqueue_script('picts-pdfviewer-tb-addon-js', plugin_dir_url(__FILE__) . '/assets/js/pdfviewer.js', array(), false, true);
+    wp_register_script('pdf-js', 'https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js', array(), false, true);
+    wp_register_script('picts-pdfviewer-tb-addon-js', plugin_dir_url(__FILE__) . '/assets/js/pdfviewer.js', array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'pdfviewer_tb_enqueue');
 
 function shortcode_picts_pdfviewer_function($atts, $content, $tag)
 {
+
+    wp_enqueue_script('pdf-js-picts');
+    wp_enqueue_script('picts-pdfviewer-tb-addon-js');
+
     $result = "";
 
     $a = shortcode_atts(array(
