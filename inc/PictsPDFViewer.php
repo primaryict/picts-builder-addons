@@ -59,13 +59,12 @@ class PictsPDFViewer
 
     function picts_pdfviewer_scripts_loader()
     {
-
         wp_enqueue_script('fa-kit', 'https://kit.fontawesome.com/e6cf51480f.js');
         wp_enqueue_style('picts-pdfviewer-tb-addon', plugin_dir_url(__FILE__) . 'assets/css/pdfviewer.css');
         // wp_enqueue_style('font-awesome-solid', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css');
 
-        wp_enqueue_script('pdf-js', 'https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js', array(), false, true);
-        wp_enqueue_script('picts-pdfviewer-tb-addon', plugin_dir_url(__FILE__) . 'assets/js/pdfviewer.js', array(), false, true);
+        wp_register_script('pdf-js', 'https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js', array(), false, true);
+        wp_register_script('picts-pdfviewer-tb-addon', plugin_dir_url(__FILE__) . 'assets/js/pdfviewer.js', array(), false, true);
     }
 }
 new PictsPDFViewer;
