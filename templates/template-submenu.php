@@ -79,7 +79,7 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 			</div>
 
 		<?php } elseif ($parentpages && $parentpage_id !== 0) { ?>
-			<div class="picts_sub_page_list_wrapper">
+			<div class="picts_sub_page_list_wrapper parentpage">
 				<ul class="picts_sub_page_list"><?php echo $parentpages; ?></ul>
 			</div>
 		<?php } else { ?>
@@ -98,7 +98,8 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 		}
 		?>
 
-	<?php } ?>
+
+	<?php }  ?>
 
 
 

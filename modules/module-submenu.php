@@ -223,12 +223,12 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				self::get_tab(array(
 					'n' => array(
 						'options' => array(
-							self::get_image(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'bg_i', 'background_color_title', 'bg_r', 'bg_p')
+							self::get_image(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li'), 'bg_i', 'background_color_title', 'bg_r', 'bg_p')
 						)
 					),
 					'h' => array(
 						'options' => array(
-							self::get_image(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'bg_i', 'b_c_t', 'bg_r', 'bg_p', 'h')
+							self::get_image(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li:hover'), 'bg_i', 'b_c_t', 'bg_r', 'bg_p', 'h')
 						)
 					)
 				))
@@ -238,28 +238,28 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				self::get_tab(array(
 					'n' => array(
 						'options' => array(
-							self::get_font_family(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_family_title'),
-							self::get_color(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_color_title'),
-							self::get_font_size(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'font_size_title'),
-							self::get_line_height(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'line_height_title'),
-							self::get_letter_spacing(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'l_s_t'),
-							self::get_text_transform(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_t_t'),
-							self::get_font_style(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'f_s_t', 'f_t_b'),
-							self::get_text_decoration(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_d_t'),
-							self::get_text_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 't_sh_t')
+							self::get_font_family(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'font_family_title'),
+							self::get_color(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'font_color_title'),
+							self::get_font_size(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'font_size_title'),
+							self::get_line_height(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'line_height_title'),
+							self::get_letter_spacing(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'l_s_t'),
+							self::get_text_transform(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 't_t_t'),
+							self::get_font_style(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 'f_s_t', 'f_t_b'),
+							self::get_text_decoration(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 't_d_t'),
+							self::get_text_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list li a'), 't_sh_t')
 						)
 					),
 					'h' => array(
 						'options' => array(
-							self::get_font_family(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_f_t', 'h'),
-							self::get_color(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_c_t', null, null, ''),
-							self::get_font_size(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_s_t', '', 'h'),
-							self::get_line_height(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'l_h_t', 'h'),
-							self::get_letter_spacing(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'l_s_t', 'h'),
-							self::get_text_transform(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_t_t', 'h'),
-							self::get_font_style(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'f_st_t', 'f_t_b', 'h'),
-							self::get_text_decoration(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_d_t', 'h'),
-							self::get_text_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 't_sh_t', 'h')
+							self::get_font_family(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'f_f_t', 'h'),
+							self::get_color(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'f_c_t', null, null, ''),
+							self::get_font_size(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'f_s_t', '', 'h'),
+							self::get_line_height(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'l_h_t', 'h'),
+							self::get_letter_spacing(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'l_s_t', 'h'),
+							self::get_text_transform(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 't_t_t', 'h'),
+							self::get_font_style(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 'f_st_t', 'f_t_b', 'h'),
+							self::get_text_decoration(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 't_d_t', 'h'),
+							self::get_text_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list li a:hover'), 't_sh_t', 'h')
 						)
 					)
 				))
@@ -269,12 +269,12 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				self::get_tab(array(
 					'n' => array(
 						'options' => array(
-							self::get_padding(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'p_a_t')
+							self::get_padding(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list > li'), 'p_a_t')
 						)
 					),
 					'h' => array(
 						'options' => array(
-							self::get_padding(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'p_a_t', 'h')
+							self::get_padding(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list > li:hover'), 'p_a_t', 'h')
 						)
 					)
 				))
@@ -284,12 +284,12 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				self::get_tab(array(
 					'n' => array(
 						'options' => array(
-							self::get_box_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title'), 'sh_t')
+							self::get_box_shadow(array(' .page_block_item a h4', ' .picts_sub_page_list_wrapper a.title', ' .picts_sub_page_list > li'), 'sh_t')
 						)
 					),
 					'h' => array(
 						'options' => array(
-							self::get_box_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover'), 'sh_t', 'h')
+							self::get_box_shadow(array(' .page_block_item a h4:hover', ' .picts_sub_page_list_wrapper a.title:hover', ' .picts_sub_page_list > li:hover'), 'sh_t', 'h')
 						)
 					)
 				))
