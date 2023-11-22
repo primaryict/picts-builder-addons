@@ -79,6 +79,7 @@
 .picts_sub_page_list .page_item_has_children a:first-of-type,
 .picts_sub_page_list .menu-item-has-children a:first-of-type {
     flex-grow: 1;
+
 }
 
 .dropDown {
