@@ -44,6 +44,8 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 
 	$menu_type = (isset($fields_args['menu_type'])) ? $fields_args['menu_type'] : 'block';
 	$block_menu_icon = (isset($fields_args['block_menu_icon'])) ? $fields_args['block_menu_icon'] : null;
+	$custom_menu = (isset($fields_args['custom_menu'])) ? $fields_args['custom_menu'] : null;
+	$allow_menu_fallback = (isset($fields_args['allow_menu_fallback'])) ? $fields_args['allow_menu_fallback'] : null;
 
 	if ($menu_type == "block") { ?>
 
@@ -69,8 +71,10 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 
 		$parentpage_id = wp_get_post_parent_id($post->ID);
 
+
 		$childpages = wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $post->ID . '&echo=0');
 		$parentpages = wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $parentpage_id . '&echo=0');
+
 
 		if ($childpages) { ?>
 
@@ -82,12 +86,12 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 			<div class="picts_sub_page_list_wrapper parentpage">
 				<ul class="picts_sub_page_list"><?php echo $parentpages; ?></ul>
 			</div>
-		<?php } else { ?>
+		<?php } elseif ($custom_menu) { ?>
 
-		<?php
+	<?php
 			echo wp_nav_menu(
 				array(
-
+					'menu'		  	  => $custom_menu,
 					'menu_class'      => 'menu-wrapper',
 					'container_class' => 'picts_sub_page_list_wrapper',
 					'items_wrap'      => '<ul class="picts_sub_page_list menuList" class="%2$s">%3$s</ul>',
@@ -95,11 +99,18 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 					'link_after'      => $link_after
 				)
 			);
+		} elseif (!empty($allow_menu_fallback)) {
+			$args = array(
+				'title_li'	=> '',
+				'echo'		=> 0,
+			);
+			printf(
+				'<div class="module-menu-container"><ul class="%1$s">%2$s</ul></div>',
+				'ui tf_clearfix nav tf_rel ' . $fields_args['layout_menu'] . ' ' . $fields_args['color_menu'] . ' ' . $fields_args['according_style_menu'],
+				wp_list_pages($args)
+			);
 		}
-		?>
-
-
-	<?php }  ?>
+	} ?>
 
 
 

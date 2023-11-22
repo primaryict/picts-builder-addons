@@ -42,6 +42,22 @@ class PICTS_Subpage_Module extends Themify_Builder_Component_Module
 				'type' => 'image',
 				'label' => __('Block Menu Icon', 'sub-menu')
 			),
+			array(
+				'id' => 'custom_menu',
+				'type' => 'select',
+				'dataset' => 'menu',
+				'description' => sprintf(__('Add/edit <a href="%s" target="_blank">%s</a>', 'themify'), admin_url('nav-menus.php'), __('Menus', 'themify')),
+				'label' => __('Fallback Menu', 'themify'),
+				'options' => array()
+			),
+			array(
+				'id' => 'allow_menu_fallback',
+				'label' => '',
+				'type' => 'checkbox',
+				'options' => array(
+					array('name' => 'allow_fallback', 'value' => __('List all pages as fallback', 'themify'))
+				)
+			),
 			array('type' => 'custom_css_id')
 		);
 	}
