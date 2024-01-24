@@ -42,9 +42,11 @@ $container_props = apply_filters('themify_builder_module_container_props', array
     if ($pdf_file) { ?>
 
         <div class="picts_pdf_viewer_block_wrapper">
-
-            <?php echo do_shortcode('[picts_pdfviewer pdf="' . $pdf_file . '"]'); ?>
-
+            <div id="picts-tb-pdf">
+                <object data="<?php echo $pdf_file; ?>" type="application/pdf" style="width: 100%; aspect-ratio: 1/1.4">
+                    <iframe src="https://docs.google.com/viewer?url=<?php echo $pdf_file; ?>&embedded=true" style="width: 100%; aspect-ratio: 1/1.4"></iframe>
+                </object>
+            </div>
         </div>
 
     <?php } ?>

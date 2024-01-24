@@ -123,40 +123,21 @@ class PICTS_Pdfviewer_Module extends Themify_Builder_Component_Module
             ))
         );
     }
+
+
+
     protected function _visual_template()
     {
         $module_args = self::get_module_args('mod_title_icon');
 ?>
         <div class="module module-<?php echo $this->slug; ?>">
             <# if( data.pdf_file ) { #>
-                <div id="picts-tb-pdf">
-                    <div role="toolbar" id="toolbar" class="toolbar">
-                        <div class="left">
-                            <div id="pager">
-                                <span data-pager="prev"><i data-pager="prev" class="fa-solid fa-circle-arrow-left"></i></span>
-                                <span data-pager="next"><i data-pager="next" class="fa-solid fa-circle-arrow-right"></i></span>
-                            </div>
-                            <div id="page">
-                                <span id="currentPage"></span> / <span id="totalPages"></span>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <div id="zoom">
-                                <span id="zoomlevel">100%</span>
-                                <span data-pager="zoomout"><i data-pager="zoomout" class="fa-solid fa-magnifying-glass-minus"></i></span>
-                                <span data-pager="zoomin"><i data-pager="zoomin" class="fa-solid fa-magnifying-glass-plus"></i></span>
-                            </div>
-                            <span id="download"><a href="' . $a['pdf'] . '" download><i class="fa-solid fa-download"></i></a></span>
-                        </div>
-                    </div>
-                    <div id="viewport-container">
-                        <div role="main" id="viewport">
-                            <span class="preview-not-available">Preview Not Available</span>
-                        </div>
-                    </div>
-                </div>
 
-                <# initPDFViewer(data.pdf_file); } else { #>
+                <object data="{{{data.pdf_file}}}" type="application/pdf" style="width: 100%; aspect-ratio: 1/1.4">
+                    <iframe src="https://docs.google.com/viewer?url={{{data.pdf_file}}}&embedded=true" style="width: 100%; aspect-ratio: 1/1.4"></iframe>
+                </object>
+
+                <# } else { #>
 
                     <p>No File selected</p>
 
