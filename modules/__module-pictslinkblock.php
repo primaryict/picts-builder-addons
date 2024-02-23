@@ -6,7 +6,7 @@ if (!defined('ABSPATH'))
  * Module Name: Link
  * Description: Display Link
  */
-class TB_Picts_Link_Block_Module extends Themify_Builder_Component_Module
+class Picts_Pictslinkblock_Module extends Themify_Builder_Component_Module
 {
 
     public function __construct()
@@ -591,5 +591,5 @@ class TB_Picts_Link_Block_Module extends Themify_Builder_Component_Module
     <?php
     }
 }
-
-new TB_Picts_Link_Block_Module();
+Themify_Builder_Model::register_module('Picts_Pictslinkblock_Module');
+// new Picts_Pictslinkblock_Module();

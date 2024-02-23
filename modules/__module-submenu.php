@@ -2,7 +2,7 @@
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-class PICTS_Subpage_Module extends Themify_Builder_Component_Module
+class PICTS_Submenu_Module extends Themify_Builder_Component_Module
 {
 
 	function __construct()

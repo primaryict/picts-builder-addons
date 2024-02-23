@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
  * Module Name: Button
  * Description: Display Button content
  */
-class TB_Picts_Buttons_Module extends Themify_Builder_Component_Module
+class PICTS_Pictsbutton_Module extends Themify_Builder_Component_Module
 {
 
     public function __construct()

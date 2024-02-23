@@ -36,21 +36,13 @@ $updater->set_repository('picts-builder-addons');
 $updater->initialize();
 
 
-function picts_register_module()
-{
-    Themify_Builder_Model::register_directory('templates', PICTS_TBADDON_PLUGIN_URI . '/templates');
-    Themify_Builder_Model::register_directory('modules', PICTS_TBADDON_PLUGIN_URI . '/modules');
-}
-add_action('themify_builder_setup_modules', 'picts_register_module');
+// function picts_register_module()
+// {
+//     Themify_Builder_Model::register_directory('templates', PICTS_TBADDON_PLUGIN_URI . '/templates');
+//     Themify_Builder_Model::register_directory('modules', PICTS_TBADDON_PLUGIN_URI . '/modules');
+// }
+// add_action('themify_builder_setup_modules', 'picts_register_module');
 
 
 // Sub Menu Addon File
 include_once(PICTS_TBADDON_PLUGIN_URI . 'inc/sub-menu.php');
-
-// Events Shortcode
-// include_once(PICTS_TBADDON_PLUGIN_URI . 'inc/shortcode/events.php');
-
-// Add Picts PDF Viewer is it doesn't already exist
-// if (!class_exists('PictsPDFViewer')) {
-//     include_once(plugin_dir_path(__FILE__) . 'inc/PictsPDFViewer.php');
-// }
