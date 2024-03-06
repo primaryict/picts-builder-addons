@@ -17,7 +17,7 @@ function sub_menu_tb_enqueue()
     wp_enqueue_style('picts-sub-menu-tb-addon-css', plugin_dir_url(__FILE__) . '/assets/css/sub-menu.css');
     wp_enqueue_style('dashicons');
 
-    wp_enqueue_script('picts-sub-menu-tb-addon-js', plugin_dir_url(__FILE__) . '/assets/js/sub-menu.js', array(), false, true);
+    wp_enqueue_script('picts-sub-menu-tb-addon', plugin_dir_url(__FILE__) . 'assets/js/sub-menu.js', array(), false, true);
 }
 add_action('wp_enqueue_scripts', 'sub_menu_tb_enqueue');
 

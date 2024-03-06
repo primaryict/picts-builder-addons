@@ -1,0 +1,877 @@
+{
+    "addfile": {
+        "type": "tabs",
+        "options": {
+            "g": [
+                {
+                    "type": "expand",
+                    "label": "bg",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "background_image",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": ".module",
+                                        "origId": "background_image",
+                                        "colorId": "background_color",
+                                        "repeatId": "background_repeat",
+                                        "posId": "background_position"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "b_i_h",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": ".module",
+                                        "origId": "b_i_h",
+                                        "colorId": "bg_c_h",
+                                        "repeatId": "b_r_h",
+                                        "posId": "b_p_h",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "f",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "font_family",
+                                        "type": "font_select",
+                                        "prop": "font-family",
+                                        "selector": " .module-buttons-item a"
+                                    },
+                                    {
+                                        "id": "font_color",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": [
+                                            " em",
+                                            " .ui",
+                                            " span"
+                                        ]
+                                    },
+                                    {
+                                        "id": "font_size",
+                                        "type": "fontSize",
+                                        "selector": " .module-buttons-item a",
+                                        "prop": "font-size"
+                                    },
+                                    {
+                                        "id": "line_height",
+                                        "type": "lineHeight",
+                                        "selector": " .module-buttons-item a",
+                                        "prop": "line-height"
+                                    },
+                                    {
+                                        "id": "letter_spacing",
+                                        "type": "letterSpace",
+                                        "selector": " .module-buttons-item a",
+                                        "prop": "letter-spacing"
+                                    },
+                                    {
+                                        "id": "text_align",
+                                        "label": "t_a",
+                                        "type": "icon_radio",
+                                        "aligment": true,
+                                        "prop": "text-align",
+                                        "selector": ""
+                                    },
+                                    {
+                                        "id": "text_transform",
+                                        "label": "t_t",
+                                        "type": "icon_radio",
+                                        "text_transform": true,
+                                        "prop": "text-transform",
+                                        "selector": " .module-buttons-item a"
+                                    },
+                                    {
+                                        "id": "font_style",
+                                        "id2": "font_weight",
+                                        "type": "fontStyle",
+                                        "prop": "font-style",
+                                        "selector": " .module-buttons-item a"
+                                    },
+                                    {
+                                        "id": "text_decoration_regular",
+                                        "type": "icon_radio",
+                                        "label": "t_d",
+                                        "text_decoration": true,
+                                        "prop": "text-decoration",
+                                        "selector": [
+                                            " em",
+                                            " .ui",
+                                            " span"
+                                        ]
+                                    },
+                                    {
+                                        "id": "text-shadow",
+                                        "type": "text_shadow",
+                                        "prop": "text-shadow",
+                                        "selector": " .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "f_f_h",
+                                        "type": "font_select",
+                                        "prop": "font-family",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    },
+                                    {
+                                        "id": "f_c_h",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": [
+                                            " .module-buttons-item:hover em",
+                                            " .module-buttons-item:hover a",
+                                            " .module-buttons-item:hover span"
+                                        ]
+                                    },
+                                    {
+                                        "id": "f_s_h",
+                                        "type": "fontSize",
+                                        "selector": " .module-buttons-item a",
+                                        "prop": "font-size",
+                                        "h": true
+                                    },
+                                    {
+                                        "id": "f_st_h",
+                                        "id2": "f_w_h",
+                                        "type": "fontStyle",
+                                        "prop": "font-style",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    },
+                                    {
+                                        "id": "t_d_r_h",
+                                        "type": "icon_radio",
+                                        "label": "t_d",
+                                        "text_decoration": true,
+                                        "prop": "text-decoration",
+                                        "selector": [
+                                            " em",
+                                            " .ui",
+                                            " span"
+                                        ],
+                                        "h": true
+                                    },
+                                    {
+                                        "id": "t_sh_h",
+                                        "type": "text_shadow",
+                                        "prop": "text-shadow",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "p",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "padding",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "p_h",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "m",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "margin",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "m_h",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "b",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "border",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "b_h",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "f_l",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "css_f",
+                                        "mid": "bl_m",
+                                        "type": "filters",
+                                        "prop": "filter",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "css_f_h",
+                                        "mid": "_h",
+                                        "type": "filters",
+                                        "prop": "filter",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "w",
+                    "options": [
+                        {
+                            "id": "w",
+                            "type": "width",
+                            "prop": "width",
+                            "selector": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "ht",
+                    "options": [
+                        {
+                            "id": "ht",
+                            "type": "height",
+                            "prop": "height",
+                            "selector": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "r_c",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "b_ra",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "r_c_h",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "sh",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "b_sh",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "sh_h",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "po",
+                    "options": [
+                        {
+                            "id": "po",
+                            "type": "position",
+                            "prop": "position",
+                            "selector": ""
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "zi",
+                    "options": [
+                        {
+                            "id": "custom_parallax_scroll_zindex",
+                            "selector": "",
+                            "prop": "z-index",
+                            "type": "zIndex"
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "tr",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "tr",
+                                        "type": "transform",
+                                        "prop": "transform",
+                                        "selector": ""
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "tr-h",
+                                        "type": "transform",
+                                        "prop": "transform",
+                                        "selector": "",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "btnlink": [
+                {
+                    "type": "expand",
+                    "label": "bg",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "b_i",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": " .module-buttons-item a",
+                                        "origId": "b_i",
+                                        "colorId": "button_background_color",
+                                        "repeatId": "b_r",
+                                        "posId": "b_p"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "bl_i",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": " .module-buttons-item a:hover",
+                                        "origId": "bl_i",
+                                        "colorId": "button_hover_background_color",
+                                        "repeatId": "bl_r",
+                                        "posId": "bl_p"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "l",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "link_color",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": [
+                                            " .module-buttons-item a"
+                                        ]
+                                    },
+                                    {
+                                        "id": "text_decoration",
+                                        "type": "icon_radio",
+                                        "label": "t_d",
+                                        "text_decoration": true,
+                                        "prop": "text-decoration",
+                                        "selector": [
+                                            " .module-buttons-item a"
+                                        ]
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "link_color_hover",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": [
+                                            " .module-buttons-item a:hover"
+                                        ]
+                                    },
+                                    {
+                                        "id": "t_d_h",
+                                        "type": "icon_radio",
+                                        "label": "t_d",
+                                        "text_decoration": true,
+                                        "prop": "text-decoration",
+                                        "selector": [
+                                            " .module-buttons-item a:hover"
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "p",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "padding_link",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": " .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "p_l_h",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "m",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "link_margin",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": " .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "l_m_h",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "b",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "link_border",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": ".module .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "l_b_h",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": ".module .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "r_c",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "l_b_r_c",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": " .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "l_b_r_c_h",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "sh",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "l_b_sh",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": " .module-buttons-item a"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "l_b_sh_h",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": " .module-buttons-item a",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "icon": [
+                {
+                    "type": "expand",
+                    "label": "bg",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "bic_b_i",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": " .module-buttons-item em",
+                                        "origId": "bic_b_i",
+                                        "colorId": "bic_b_c",
+                                        "repeatId": "bic_b_r",
+                                        "posId": "bic_b_p"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "bic_b_i_h",
+                                        "type": "imageGradient",
+                                        "prop": "background-image",
+                                        "selector": " .module-buttons-item:hover em",
+                                        "origId": "bic_b_i_h",
+                                        "colorId": "bic_h_b_c",
+                                        "repeatId": "bic_b_r_h",
+                                        "posId": "bic_b_p_h"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "f",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "b_c_bic",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": " .module-buttons-item em"
+                                    },
+                                    {
+                                        "id": "f_s_bic",
+                                        "type": "fontSize",
+                                        "selector": " .module-buttons-item em",
+                                        "prop": "font-size"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "f_c_h_bic",
+                                        "type": "color",
+                                        "prop": "color",
+                                        "selector": " .module-buttons-item:hover em"
+                                    },
+                                    {
+                                        "id": "f_s_h_bic",
+                                        "type": "fontSize",
+                                        "selector": " .module-buttons-item:hover em",
+                                        "prop": "font-size"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "p",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "p_i_bic",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": " .module-buttons-item em"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "p_i_bic_h",
+                                        "type": "padding",
+                                        "prop": "padding",
+                                        "selector": " .module-buttons-item em",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "m",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "m_i_bic",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": " .module-buttons-item em"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "m_i_bic_h",
+                                        "type": "margin",
+                                        "prop": "margin",
+                                        "selector": " .module-buttons-item em",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "b",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "b_i_bic",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": " .module-buttons-item em"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "b_i_bic_h",
+                                        "type": "border",
+                                        "prop": "border",
+                                        "selector": " .module-buttons-item em",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "r_c",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "rc_i_bic",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": " .module-buttons-item em"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "rc_i_bic_h",
+                                        "type": "border_radius",
+                                        "prop": "border-radius",
+                                        "selector": " .module-buttons-item em",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "expand",
+                    "label": "sh",
+                    "options": [
+                        {
+                            "type": "tabs",
+                            "options": {
+                                "n": [
+                                    {
+                                        "id": "sh_i_bic",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": " .module-buttons-item em"
+                                    }
+                                ],
+                                "h": [
+                                    {
+                                        "id": "sh_i_bic_h",
+                                        "type": "box_shadow",
+                                        "prop": "box-shadow",
+                                        "selector": " .module-buttons-item em",
+                                        "h": true
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

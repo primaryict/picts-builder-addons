@@ -47,9 +47,9 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 	$custom_menu = (isset($fields_args['custom_menu'])) ? $fields_args['custom_menu'] : null;
 	$allow_menu_fallback = (isset($fields_args['allow_menu_fallback'])) ? $fields_args['allow_menu_fallback'] : null;
 
-	if ($menu_type == "block") { ?>
 
-		<div class="quote-picts_sub_page_block_wrapper">
+	if ($menu_type == "block") { ?>
+		<div class="picts_sub_page_block_wrapper">
 			<ul class="picts_sub_page_block_list">
 
 				<?php wp_list_pages(array(
