@@ -49,3 +49,9 @@
 .module.module-buttons.transparent a.tb_default_color {
     color: #555
 }
+
+.module-addfile a.tf_in_flx {
+    place-items: start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
