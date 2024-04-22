@@ -130,6 +130,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    grid-gap: 5px;
 }
 
 .picts_sub_page_block_list .page_block_item {
@@ -139,7 +140,7 @@
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
-    margin: 5px;
+    margin: 0px;
     padding: 0px;
     transition: all ease 0.2s;
 }
@@ -152,8 +153,6 @@
     display: block;
     text-align: center;
     text-decoration: none;
-    width: 100%;
-    height: 100%;
 }
 
 .picts_sub_page_block_list .page_block_item a img {

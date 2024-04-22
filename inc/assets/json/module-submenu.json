@@ -294,7 +294,7 @@
                                         "id": "picts_mb_background_color_",
                                         "type": "color",
                                         "prop": "background-color",
-                                        "selector": " .page_block_item a",
+                                        "selector": " .page_block_item",
                                         "label": "bg_c"
                                     }
                                 ],
@@ -303,7 +303,7 @@
                                         "id": "picts_mb_bg_c_h",
                                         "type": "color",
                                         "prop": "background-color",
-                                        "selector": " .page_block_item a",
+                                        "selector": " .page_block_item",
                                         "label": "bg_c",
                                         "h": true
                                     }
@@ -480,17 +480,17 @@
                                 "n": [
                                     {
                                         "id": "picts_mb_margin",
-                                        "type": "margin",
-                                        "prop": "margin",
-                                        "selector": " .page_block_item a"
+                                        "type": "fontSize",
+                                        "prop": "grid-gap",
+                                        "selector": " .picts_sub_page_block_list"
                                     }
                                 ],
                                 "h": [
                                     {
                                         "id": "picts_mb_m_h",
-                                        "type": "margin",
-                                        "prop": "margin",
-                                        "selector": " .page_block_item a",
+                                        "type": "fontSize",
+                                        "prop": "grid-gap",
+                                        "selector": " .picts_sub_page_block_list",
                                         "h": true
                                     }
                                 ]
@@ -510,7 +510,7 @@
                                         "id": "picts_mb_border_accordion",
                                         "type": "border",
                                         "prop": "border",
-                                        "selector": " .page_block_item a"
+                                        "selector": " .page_block_item"
                                     }
                                 ],
                                 "h": [
@@ -518,7 +518,7 @@
                                         "id": "picts_mb_b_a_h",
                                         "type": "border",
                                         "prop": "border",
-                                        "selector": " .page_block_item a",
+                                        "selector": " .page_block_item",
                                         "h": true
                                     }
                                 ]
@@ -538,7 +538,7 @@
                                         "id": "picts_mb_b_ra",
                                         "type": "border_radius",
                                         "prop": "border-radius",
-                                        "selector": " .page_block_item a"
+                                        "selector": " .page_block_item"
                                     }
                                 ],
                                 "h": [
@@ -546,7 +546,7 @@
                                         "id": "picts_mb_r_c_h",
                                         "type": "border_radius",
                                         "prop": "border-radius",
-                                        "selector": "",
+                                        "selector": " .page_block_item",
                                         "h": true
                                     }
                                 ]
@@ -566,7 +566,7 @@
                                         "id": "picts_mb_b_sh",
                                         "type": "box_shadow",
                                         "prop": "box-shadow",
-                                        "selector": " .page_block_item a"
+                                        "selector": " .page_block_item"
                                     }
                                 ],
                                 "h": [
@@ -574,7 +574,7 @@
                                         "id": "picts_mb_sh_h",
                                         "type": "box_shadow",
                                         "prop": "box-shadow",
-                                        "selector": " .page_block_item a",
+                                        "selector": " .page_block_item",
                                         "h": true
                                     }
                                 ]
