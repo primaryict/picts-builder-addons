@@ -139,15 +139,12 @@
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
-    margin: 10px;
-    padding: 10px 10px 10px 10px;
-    /* border: 1px solid #dddddd;
-        background: #efefef; */
+    margin: 5px;
+    padding: 0px;
     transition: all ease 0.2s;
 }
 
 .picts_sub_page_block_list .page_block_item:hover {
-    /* background: #d7d7d7; */
     text-decoration: none;
 }
 
