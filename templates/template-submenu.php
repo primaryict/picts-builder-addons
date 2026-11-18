@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) exit; // Exit if accessed directly
  * Access original fields: $args['mod_settings']
  */
 global $post;
+$current_post_id = isset($post->ID) ? (int) $post->ID : 0;
 
 $fields_default = array(
 	'quote_text' => '',
@@ -52,9 +53,9 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 		<div class="picts_sub_page_block_wrapper">
 			<ul class="picts_sub_page_block_list">
 
-				<?php wp_list_pages(array(
+				<?php if ($current_post_id) wp_list_pages(array(
 					'title_li'      => '',
-					'child_of'      => $post->ID,
+					'child_of'      => $current_post_id,
 					'sort_column'   => 'menu_order',
 					'depth'         => 1,
 					'walker'        => new ChildpageBlocksWalker,
@@ -69,11 +70,11 @@ $container_props = apply_filters('themify_builder_module_container_props', array
 
 		$link_after = '<a href="#" class="dropDown"><span class="dashicons dashicons-arrow-down-alt2"></span></i></a>';
 
-		$parentpage_id = wp_get_post_parent_id($post->ID);
+		$parentpage_id = $current_post_id ? wp_get_post_parent_id($current_post_id) : 0;
 
 
-		$childpages = wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $post->ID . '&echo=0');
-		$parentpages = wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $parentpage_id . '&echo=0');
+		$childpages = $current_post_id ? wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $current_post_id . '&echo=0') : '';
+		$parentpages = $parentpage_id ? wp_list_pages('sort_column=menu_order&title_li=&link_after=' . $link_after . '&child_of=' . $parentpage_id . '&echo=0') : '';
 
 
 		if ($childpages) { ?>
