@@ -6,7 +6,7 @@
  * Plugin URI:        www.primaryictsupport.co.uk
  * Description:       Primary ICT Support plugin to add additional features to the Themify builder. Sub & Side Menu Module, PDF Viewer Module.
  * Text Domain:       picts-tbaddon
- * Version:           0.1.4
+ * Version:           0.1.5
  * Author:            John Emmett
  * Author URI:        www.primaryictsupport.co.uk
  * License:           GPL-2.0+
@@ -28,10 +28,10 @@ define('PICTS_TBADDON_BASENAME', plugin_basename(__FILE__));
  **/
 
 // GIT HUB Updater
-if (!class_exists('Picts_Updater')) {
+if (!class_exists('PICTS_Builder_Addons_Updater')) {
     include_once(plugin_dir_path(__FILE__) . 'inc/updater/updater.php');
 }
-$updater = new Picts_Updater(__FILE__);
+$updater = new PICTS_Builder_Addons_Updater(__FILE__);
 $updater->set_username('primaryict');
 $updater->set_repository('picts-builder-addons');
 $updater->initialize();
