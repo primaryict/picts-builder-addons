@@ -1,178 +1,151 @@
 <?php
 
-class Picts_Updater {
+defined('ABSPATH') || exit;
+
+class Picts_Builder_Addons_Updater
+{
+    private const RELEASE_API = 'https://api.github.com/repos/primaryict/picts-builder-addons';
+    private const CACHE_KEY = 'picts_builder_addons_github_release';
 
     private $file;
-
-    private $plugin;
-
     private $basename;
+    private $slug;
 
-    private $active;
-
-    private $username;
-
-    private $repository;
-
-    private $authorize_token;
-
-    private $github_response;
-
-    public function __construct( $file ) {
-
+    public function __construct($file)
+    {
         $this->file = $file;
-
-        add_action( 'admin_init', array( $this, 'set_plugin_properties' ) );
-
-        return $this;
+        $this->basename = plugin_basename($file);
+        $this->slug = dirname($this->basename);
     }
 
-    public function set_plugin_properties() {
-        $this->plugin	= get_plugin_data( $this->file );
-        $this->basename = plugin_basename( $this->file );
-        $this->active	= is_plugin_active( $this->basename );
+    public function initialize()
+    {
+        add_filter('pre_set_site_transient_update_plugins', [$this, 'modify_transient']);
+        add_filter('plugins_api', [$this, 'plugin_popup'], 10, 3);
+        add_filter('upgrader_source_selection', [$this, 'select_source'], 10, 4);
     }
 
-    public function set_username( $username ) {
-        $this->username = $username;
-    }
-
-    public function set_repository( $repository ) {
-        $this->repository = $repository;
-    }
-
-    public function authorize( $token ) {
-        $this->authorize_token = $token;
-    }
-
-    private function get_repository_info() {
-        if ( is_null( $this->github_response ) ) { // Do we have a response?
-            $args = array();
-            $request_uri = sprintf( 'https://api.github.com/repos/%s/%s/releases', $this->username, $this->repository ); // Build URI
-
-            $args = array();
-
-            if( $this->authorize_token ) { // Is there an access token?
-                $args['headers']['Authorization'] = "token {$this->authorize_token}"; // Set the headers
-            }
-
-            $response = json_decode( wp_remote_retrieve_body( wp_remote_get( $request_uri, $args ) ), true ); // Get JSON and parse it
-
-            if( is_array( $response ) ) { // If it is an array
-                $response = current( $response ); // Get the first item
-            }
-
-            $this->github_response = $response; // Set it to our property
+    private function get_release()
+    {
+        $cached = get_site_transient(self::CACHE_KEY);
+        if (is_array($cached)) {
+            return $cached;
         }
-    }
 
-    public function initialize() {
-        add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'modify_transient' ), 10, 1 );
-        add_filter( 'plugins_api', array( $this, 'plugin_popup' ), 10, 3);
-        add_filter( 'upgrader_post_install', array( $this, 'after_install' ), 10, 3 );
+        $response = wp_remote_get(self::RELEASE_API . '/releases/latest', [
+            'timeout' => 5,
+            'headers' => ['Accept' => 'application/vnd.github+json'],
+        ]);
 
-        // Add Authorization Token to download_package
-        add_filter( 'upgrader_pre_download',
-            function() {
-                add_filter( 'http_request_args', [ $this, 'download_package' ], 15, 2 );
-                return false; // upgrader_pre_download filter default return value.
-            }
-        );
-    }
-
-    public function modify_transient( $transient ) {
-
-        if( property_exists( $transient, 'checked') ) { // Check if transient has a checked property
-
-            if( $checked = $transient->checked ) { // Did Wordpress check for updates?
-
-                $this->get_repository_info(); // Get the repo info
-
-                $out_of_date = version_compare( $this->github_response['tag_name'], $checked[ $this->basename ], 'gt' ); // Check if we're out of date
-
-                if( $out_of_date ) {
-
-                    $new_files = $this->github_response['zipball_url']; // Get the ZIP
-
-                    $slug = current( explode('/', $this->basename ) ); // Create valid slug
-
-                    $plugin = array( // setup our plugin info
-                        'url' => $this->plugin["PluginURI"],
-                        'slug' => $slug,
-                        'package' => $new_files,
-                        'new_version' => $this->github_response['tag_name']
-                    );
-
-                    $transient->response[$this->basename] = (object) $plugin; // Return it in response
+        $release = [];
+        if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+            $data = json_decode(wp_remote_retrieve_body($response), true);
+            if (is_array($data) && is_string($data['tag_name'] ?? null)
+                && preg_match('/^v?([0-9]+(?:\.[0-9]+)+)\z/', $data['tag_name'], $matches)
+                && empty($data['draft']) && empty($data['prerelease'])
+            ) {
+                $package = self::RELEASE_API . '/zipball/' . rawurlencode($data['tag_name']);
+                if (($data['zipball_url'] ?? '') === $package) {
+                    $release = [
+                        'version' => $matches[1],
+                        'package' => $package,
+                        'date' => is_string($data['published_at'] ?? null) ? $data['published_at'] : '',
+                        'notes' => is_string($data['body'] ?? null) ? $data['body'] : '',
+                    ];
                 }
             }
         }
 
-        return $transient; // Return filtered transient
+        set_site_transient(self::CACHE_KEY, $release, ($release ? 15 : 5) * MINUTE_IN_SECONDS);
+        return $release;
     }
 
-    public function plugin_popup( $result, $action, $args ) {
-
-        if( ! empty( $args->slug ) ) { // If there is a slug
-
-            if( $args->slug == current( explode( '/' , $this->basename ) ) ) { // And it's our slug
-
-                $this->get_repository_info(); // Get our repo info
-
-                // Set it to an array
-                $plugin = array(
-                    'name'				=> $this->plugin["Name"],
-                    'slug'				=> $this->basename,
-                    'requires'					=> '3.3',
-                    'tested'						=> '4.4.1',
-                    'rating'						=> '100.0',
-                    'num_ratings'				=> '10823',
-                    'downloaded'				=> '14249',
-                    'added'							=> '2016-01-05',
-                    'version'			=> $this->github_response['tag_name'],
-                    'author'			=> $this->plugin["AuthorName"],
-                    'author_profile'	=> $this->plugin["AuthorURI"],
-                    'last_updated'		=> $this->github_response['published_at'],
-                    'homepage'			=> $this->plugin["PluginURI"],
-                    'short_description' => $this->plugin["Description"],
-                    'sections'			=> array(
-                        'Description'	=> $this->plugin["Description"],
-                        'Updates'		=> $this->github_response['body'],
-                    ),
-                    'download_link'		=> $this->github_response['zipball_url']
-                );
-
-                return (object) $plugin; // Return the data
-            }
-
+    public function modify_transient($transient)
+    {
+        if (!is_object($transient) || !is_array($transient->checked ?? null)) {
+            return $transient;
         }
-        return $result; // Otherwise return default
-    }
 
-    public function download_package( $args, $url ) {
+        $installed = $transient->checked[$this->basename] ?? '';
+        if (!is_string($installed) || $installed === '') {
+            return $transient;
+        }
 
-        if ( null !== $args['filename'] ) {
-            if( $this->authorize_token ) {
-                $args = array_merge( $args, array( "headers" => array( "Authorization" => "token {$this->authorize_token}" ) ) );
+        $release = $this->get_release();
+        if ($release && version_compare($release['version'], $installed, '>')) {
+            if (!is_array($transient->response ?? null)) {
+                $transient->response = [];
+            }
+            $transient->response[$this->basename] = (object) [
+                'plugin' => $this->basename,
+                'slug' => $this->slug,
+                'url' => 'https://github.com/primaryict/picts-builder-addons/releases',
+                'package' => $release['package'],
+                'new_version' => $release['version'],
+            ];
+            if (is_array($transient->no_update ?? null)) {
+                unset($transient->no_update[$this->basename]);
             }
         }
 
-        remove_filter( 'http_request_args', [ $this, 'download_package' ] );
-
-        return $args;
+        return $transient;
     }
 
-    public function after_install( $response, $hook_extra, $result ) {
-        global $wp_filesystem; // Get global FS object
-
-        $install_directory = plugin_dir_path( $this->file ); // Our plugin directory
-        $wp_filesystem->move( $result['destination'], $install_directory ); // Move files to the plugin dir
-        $result['destination'] = $install_directory; // Set the destination for the rest of the stack
-
-        if ( $this->active ) { // If it was active
-            activate_plugin( $this->basename ); // Reactivate
+    public function plugin_popup($result, $action, $args)
+    {
+        if ($action !== 'plugin_information' || ($args->slug ?? '') !== $this->slug) {
+            return $result;
         }
 
-        return $result;
+        $release = $this->get_release();
+        if (!$release) {
+            return $result;
+        }
+
+        $plugin = get_file_data($this->file, [
+            'name' => 'Plugin Name',
+            'description' => 'Description',
+            'author' => 'Author',
+            'homepage' => 'Plugin URI',
+        ]);
+
+        return (object) [
+            'name' => $plugin['name'],
+            'slug' => $this->slug,
+            'version' => $release['version'],
+            'author' => esc_html($plugin['author']),
+            'homepage' => $plugin['homepage'],
+            'last_updated' => $release['date'],
+            'sections' => [
+                'description' => esc_html($plugin['description']),
+                'changelog' => nl2br(esc_html($release['notes'])),
+            ],
+            'download_link' => $release['package'],
+        ];
+    }
+
+    public function select_source($source, $remote_source, $upgrader, $hook_extra)
+    {
+        if (is_wp_error($source) || ($hook_extra['plugin'] ?? '') !== $this->basename) {
+            return $source;
+        }
+
+        global $wp_filesystem;
+
+        if (!$wp_filesystem->is_file(trailingslashit($source) . wp_basename($this->basename))) {
+            return new WP_Error('picts_builder_addons_invalid_package', __('The Builder Add-ons update package is missing its plugin file.', 'picts-tbaddon'));
+        }
+
+        $destination = trailingslashit($remote_source) . $this->slug . '/';
+        if ($source === $destination) {
+            return $source;
+        }
+
+        // WordPress takes the installed folder name from the unpacked source.
+        if (!$wp_filesystem->move(rtrim($source, '/'), rtrim($destination, '/'))) {
+            return new WP_Error('picts_builder_addons_package_move_failed', __('Could not prepare the Builder Add-ons update package.', 'picts-tbaddon'));
+        }
+
+        return $destination;
     }
 }

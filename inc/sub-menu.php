@@ -1,56 +1,59 @@
 <?php
-/*
-Addon Name:  PICTS Custom Sub Page Menu
-Description:  Dynamic sub menu on side bar based on the page structure
-*/
 
-// If this file is called directly, abort.
-if (!defined('WPINC')) {
-    die;
-}
+defined('ABSPATH') || exit;
 
-/**
- * Load plugin's stylesheet on frontend
- */
-function sub_menu_tb_enqueue()
+function picts_tbaddon_enqueue_submenu()
 {
-    wp_enqueue_style('picts-sub-menu-tb-addon-css', plugin_dir_url(__FILE__) . '/assets/css/sub-menu.css');
-    wp_enqueue_style('dashicons');
-
-    wp_enqueue_script('picts-sub-menu-tb-addon', plugin_dir_url(__FILE__) . 'assets/js/sub-menu.js', array(), false, true);
+    wp_enqueue_style('picts-sub-menu-tb-addon-css', PICTS_TBADDON_PLUGIN_DIR . 'inc/assets/css/sub-menu.css', ['dashicons'], PICTS_TBADDON_VERSION);
+    wp_enqueue_script('picts-sub-menu-tb-addon', PICTS_TBADDON_PLUGIN_DIR . 'inc/assets/js/sub-menu.js', ['jquery'], PICTS_TBADDON_VERSION, true);
 }
-add_action('wp_enqueue_scripts', 'sub_menu_tb_enqueue');
+add_action('wp_enqueue_scripts', 'picts_tbaddon_enqueue_submenu');
 
-
-/**
- * Register module to Themify Builder
- *
- * @uses "themify_builder_setup_modules" hook
- */
-class ChildpageBlocksWalker extends Walker_Page
+class Picts_Builder_Addons_Block_Walker extends Walker_Page
 {
-
-
-    function start_el(&$output, $page, $depth = 0, $args = array(), $id = 0)
+    public function start_el(&$output, $data_object, $depth = 0, $args = [], $current_object_id = 0)
     {
+        $title = esc_html(wp_strip_all_tags(get_the_title($data_object)));
+        $image = get_the_post_thumbnail_url($data_object, 'main-featured-thumbnail') ?: ($args['walker_arg'] ?? '');
+        $image = esc_url($image);
+        $image_markup = $image === '' ? '' : '<img src="' . $image . '" alt="" />';
 
-        $fallback_image = (isset($args['walker_arg'])) ? esc_attr($args['walker_arg']) : '';
-
-        if (has_post_thumbnail($page->ID)) {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($page->ID), 'main-featured-thumbnail');
-            $imageCap = get_post(get_post_thumbnail_id($page->ID))->post_excerpt;
-            $link_title = '<img src="' . $image[0] . '" alt="' . esc_attr(wp_strip_all_tags(apply_filters('the_title', $page->post_title, $page->ID))) . '"/><h4>' . esc_attr(wp_strip_all_tags(apply_filters('the_title', $page->post_title, $page->ID))) . '</h4>';
-        } elseif ($fallback_image) {
-            $link_title = '<img src="' . $fallback_image . '" alt="' . esc_attr(wp_strip_all_tags(apply_filters('the_title', $page->post_title, $page->ID))) . '"/><h4>' . esc_attr(wp_strip_all_tags(apply_filters('the_title', $page->post_title, $page->ID))) . '</h4>';
-        } else {
-            $link_title = '<h4>' . esc_attr(wp_strip_all_tags(apply_filters('the_title', $page->post_title, $page->ID))) . '</h4>';
-        }
-        $output .= '<li class="page_block_item"><a href="' . get_permalink($page->ID) . '">' . $link_title . '</a></li>';
+        $output .= '<li class="page_block_item"><a href="' . esc_url(get_permalink($data_object)) . '">'
+            . $image_markup . '<h4>' . $title . '</h4></a>';
     }
 }
 
-function register_menus()
+function picts_tbaddon_submenu_toggle()
 {
-    register_nav_menu('sidebar-fallback-menu', __('Sidebar Fallback Menu'));
+    return '<button type="button" class="dropDown" aria-expanded="false" aria-label="'
+        . esc_attr__('Toggle submenu', 'picts-tbaddon')
+        . '"><span class="dashicons dashicons-arrow-down-alt2" aria-hidden="true"></span></button>';
 }
-add_action('init', 'register_menus');
+
+class Picts_Builder_Addons_Page_Walker extends Walker_Page
+{
+    public function start_el(&$output, $data_object, $depth = 0, $args = [], $current_object_id = 0)
+    {
+        parent::start_el($output, $data_object, $depth, $args, $current_object_id);
+        if ($this->has_children) {
+            $output .= picts_tbaddon_submenu_toggle();
+        }
+    }
+}
+
+class Picts_Builder_Addons_Menu_Walker extends Walker_Nav_Menu
+{
+    public function start_el(&$output, $data_object, $depth = 0, $args = null, $current_object_id = 0)
+    {
+        parent::start_el($output, $data_object, $depth, $args, $current_object_id);
+        if ($this->has_children) {
+            $output .= picts_tbaddon_submenu_toggle();
+        }
+    }
+}
+
+function picts_tbaddon_register_menus()
+{
+    register_nav_menu('sidebar-fallback-menu', __('Sidebar Fallback Menu', 'picts-tbaddon'));
+}
+add_action('init', 'picts_tbaddon_register_menus');

@@ -18,8 +18,7 @@ class TB_Addfile_Module extends Themify_Builder_Component_Module
     {
 
         $url = plugin_dir_url(dirname(__FILE__)) . 'inc/assets/js/modules/module-addfile.js';
-        $version = '1.0';
-        $vars['addons'][$url] = $version;
+        $vars['addons'][$url] = PICTS_TBADDON_VERSION;
 
         return $vars;
     }
@@ -32,7 +31,8 @@ class TB_Addfile_Module extends Themify_Builder_Component_Module
     public static function get_js_css(): array
     {
         return array(
-            'css' => plugin_dir_url(dirname(__FILE__)) . 'inc/assets/css/module-addfile.css'
+            'css' => PICTS_TBADDON_PLUGIN_DIR . 'inc/assets/css/module-addfile.css',
+            'ver' => PICTS_TBADDON_VERSION,
         );
     }
 

@@ -1,13 +1,16 @@
-# Primary ICT Support - Builder Addons for Themify
-Here is a Plugin for WordPress that extends the Themify Builder to add some features.
+# Primary ICT Support - Builder Add-ons for Themify
 
-## Sub Page Menu
-This module will add the ability to add sub pages to a web page as a block that will show an icon or a featured image of the page.
+This WordPress plugin adds two modules to Themify Builder.
 
-Also you can display the menu as a list, this list will fall back based on the pages children and then to a selected menu in the options.
+- **Sub Menu** shows child pages as blocks or a list. List mode uses the current page's children, then the parent's children, then the selected WordPress menu. The optional final fallback lists all pages.
+- **Add File** creates buttons for linked files and supports download, new tab and lightbox options.
 
-## PDF Viewer.
-This module will give you the option to include a PDF and display it using PDF.js.
-#### TODO
-- PDF.js doens't allow me to add more than 1 PDF viewer module on the page.
-- PDF.js breaks when used in conjunction with Dflip Plugin
+## Updating from 0.1.4
+
+If 0.1.5 appears on the **Plugins** screen, click **Update now**. The 0.1.4 updater can fail during the update check and omits the plugin identifier required for unattended WordPress updates.
+
+If the update check fails, download `picts-builder-addons-0.1.5.zip` from the GitHub release. Use **Plugins → Add New Plugin → Upload Plugin** and choose **Replace current with uploaded**. If wp-admin is unavailable, back up and replace the existing `wp-content/plugins/picts-builder-addons` folder with the extracted folder through your hosting file manager or SFTP.
+
+## Checks
+
+Run `php tests/updater.php` from the source directory to check release validation and package selection.

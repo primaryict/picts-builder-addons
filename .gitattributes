@@ -1,0 +1,9 @@
+/.gitattributes export-ignore
+.DS_Store export-ignore
+/tests export-ignore
+/inc/PictsPDFViewer.php export-ignore
+/inc/pdfviewer.php export-ignore
+/inc/assets/css/pdfviewer.css export-ignore
+/inc/assets/js/pdfviewer.js export-ignore
+/modules/__*.php export-ignore
+/templates/__*.php export-ignore

@@ -1,10 +1,6 @@
-((api, createElement, themifyBuilder, g) => {
+((api, themifyBuilder, g) => {
     'use strict';
     api.ModuleSubmenu = class extends api.Module {
-
-        constructor(fields) {
-            super(fields);
-        }
 
         static getOptions() {
             return [
@@ -38,9 +34,5 @@
         static default() {
             return {};
         }
-
-        static builderSave(settings) {
-            super.builderSave(settings);
-        }
     };
-})(tb_app, tb_createElement, themifyBuilder, themifyBuilder.i18n.label);
+})(tb_app, themifyBuilder, themifyBuilder.i18n.label);

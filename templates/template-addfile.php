@@ -3,7 +3,7 @@
 /**
  * Template Addfile
  *
- * This template can be overridden by copying it to your child_theme_folder/themify-builder/template-button.php.
+ * This template can be overridden in a child theme at themify-builder/template-addfile.php.
  *
  * Access original fields: $args['mod_settings']
  * @author Themify
@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
 
 $mod_name = $args['mod_name'];
 $element_id = $args['module_ID'];
-$fields_args = $args['mod_settings'] + array(
+$fields_args = wp_parse_args($args['mod_settings'] ?? [], array(
 	'mod_title_button' => '',
 	'buttons_size' => '',
 	'buttons_shape' => 'normal',
@@ -25,12 +25,12 @@ $fields_args = $args['mod_settings'] + array(
 	'content_addfile' => array(),
 	'animation_effect' => '',
 	'css_button' => ''
-);
+));
 /* for old button style args */
 if (in_array($fields_args['buttons_style'], array('circle', 'rounded', 'squared'), true)) {
 	$fields_args['buttons_shape'] = $fields_args['buttons_style'];
-} elseif ($fields_args['buttons_style'] === 'outline') {
-	Themify_Builder_Model::load_module_self_style($mod_name, 'outline');
+} elseif (in_array($fields_args['buttons_style'], array('outline', 'transparent'), true)) {
+	Themify_Builder_Model::load_module_self_style('buttons', $fields_args['buttons_style']);
 }
 /* End of old button style args */
 
@@ -55,9 +55,9 @@ if ($fields_args['buttons_shape'] !== 'normal') {
 if (!empty($fields_args['fullwidth_button'])) {
 	$fields_args['display'] = '';
 	$container_class[] = $fields_args['fullwidth_button'];
-	Themify_Builder_Model::load_module_self_style($mod_name, 'fullwidth');
+	Themify_Builder_Model::load_module_self_style('buttons', 'fullwidth');
 } elseif ($fields_args['display'] === 'buttons-vertical') {
-	Themify_Builder_Model::load_module_self_style($mod_name, 'vertical');
+	Themify_Builder_Model::load_module_self_style('buttons', 'vertical');
 }
 if (!empty($fields_args['global_styles']) && Themify_Builder::$frontedit_active === false) {
 	$container_class[] = $fields_args['global_styles'];
@@ -74,10 +74,12 @@ self::sticky_element_props($container_props, $fields_args);
 <div <?php echo themify_get_element_attributes($container_props); ?>>
 	<?php
 	$container_props = $container_class = $args = null;
+	$fields_args['mod_title_button'] = wp_kses_post($fields_args['mod_title_button']);
 	echo Themify_Builder_Component_Module::get_module_title($fields_args, 'mod_title_button');
 
-	foreach ($fields_args['content_addfile'] as $content) {
-		if (empty($content)) {
+	$buttons = is_array($fields_args['content_addfile']) ? $fields_args['content_addfile'] : [];
+	foreach ($buttons as $content) {
+		if (!is_array($content) || !$content) {
 			continue;
 		}
 		$content += array(
@@ -98,11 +100,12 @@ self::sticky_element_props($container_props, $fields_args);
 		if ($content['button_color_bg'] === 'default') {
 			$content['button_color_bg'] = 'tb_default_color';
 		}
-		$link_css_clsss = array('ui builder_button tf_in_flx');
+		$link_classes = array('ui builder_button tf_in_flx');
 		$link_attr = array();
+		$url = is_string($content['link']) ? esc_url($content['link']) : '';
 
 		if ($content['link_options'] === 'lightbox') {
-			$link_css_clsss[] = 'themify_lightbox';
+			$link_classes[] = 'themify_lightbox';
 
 			if ($content['lightbox_width'] !== '' || $content['lightbox_height'] !== '') {
 				$lightbox_settings = array();
@@ -112,14 +115,13 @@ self::sticky_element_props($container_props, $fields_args);
 				if ($content['lightbox_height'] !== '') {
 					$lightbox_settings[] = $content['lightbox_height'] . $content['lightbox_height_unit'];
 				}
-				$link_attr[] = sprintf('data-zoom-config="%s"', implode('|', $lightbox_settings));
-				unset($lightbox_settings);
+				$link_attr[] = sprintf('data-zoom-config="%s"', esc_attr(implode('|', $lightbox_settings)));
 			}
 		} elseif ($content['link_options'] === 'newtab') {
 			$nofollow = $fields_args['nofollow_link'] === 'yes' ? 'nofollow ' : '';
 			$link_attr[] = 'target="_blank" rel="' . $nofollow . 'noopener"';
 		}
-		$link_css_clsss[] = $content['button_color_bg'];
+		$link_classes[] = $content['button_color_bg'];
 		if ($content['button_color_bg'] !== 'tb_default_color') {
 			Themify_Builder_Model::load_color_css($content['button_color_bg']);
 		}
@@ -136,21 +138,17 @@ self::sticky_element_props($container_props, $fields_args);
 		}
 	?>
 		<div class="module-buttons-item tf_in_flx">
-			<?php if ($content['link'] !== '') : ?>
-				<a href="<?php echo esc_url($content['link']) ?>" class="<?php echo implode(' ', $link_css_clsss) ?>" <?php echo implode(' ', $link_attr) ?><?php echo $content['title'] !== '' ? ' title="' . esc_attr($content['title']) . '"' : ''; ?><?php echo $content['id'] ? ' id="' . esc_attr($content['id']) . '"' : ''; ?>>
-				<?php endif; ?>
-				<?php if ($icon !== '' && $content['icon_alignment'] !== 'right') : ?>
-					<?php echo $icon ?>
-				<?php endif; ?>
-				<?php if ($content['link'] !== '') : ?>
-					<?php echo $content['label'] ?>
-				<?php else : ?>
-					<?php echo $content['label'] ?>
-				<?php endif; ?>
-				<?php if ($icon !== '' && $content['icon_alignment'] === 'right') : ?>
-					<?php echo $icon ?>
-				<?php endif; ?>
-				<?php if ($content['link'] !== '') : ?>
+			<?php if ($url !== '') : ?>
+				<a href="<?php echo $url; ?>" class="<?php echo esc_attr(implode(' ', $link_classes)); ?>" <?php echo implode(' ', $link_attr); ?><?php echo $content['title'] !== '' ? ' title="' . esc_attr($content['title']) . '"' : ''; ?><?php echo $content['id'] ? ' id="' . esc_attr($content['id']) . '"' : ''; ?>>
+			<?php endif; ?>
+			<?php if ($icon !== '' && $content['icon_alignment'] !== 'right') : ?>
+				<?php echo $icon; ?>
+			<?php endif; ?>
+			<span data-name="label"><?php echo wp_kses_post($content['label']); ?></span>
+			<?php if ($icon !== '' && $content['icon_alignment'] === 'right') : ?>
+				<?php echo $icon; ?>
+			<?php endif; ?>
+			<?php if ($url !== '') : ?>
 				</a>
 			<?php endif; ?>
 		</div>

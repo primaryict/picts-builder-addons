@@ -1,52 +1,52 @@
-.module-buttons-item {
+.module-addfile .module-buttons-item {
     font-size: var(--tb_mb_f, 1em);
     gap: .5em;
     line-height: 1
 }
 
-.module-buttons a {
+.module-addfile a {
     gap: inherit
 }
 
-.module-buttons-item+.module-buttons-item {
+.module-addfile .module-buttons-item+.module-buttons-item {
     margin-inline-start: .6em
 }
 
-.module-buttons.small {
+.module-addfile.small {
     --tb_mb_f: .85em
 }
 
-.module-buttons.large {
+.module-addfile.large {
     --tb_mb_f: 1.1em
 }
 
-.module-buttons.xlarge {
+.module-addfile.xlarge {
     --tb_mb_f: 1.2em
 }
 
-.module.module-buttons .ui:not(.transparent) {
+.module.module-addfile .ui:not(.transparent) {
     color: var(--tb_pr_color)
 }
 
-.module-buttons.rounded a {
+.module-addfile.rounded a {
     --tb_app_r: 8px
 }
 
-.module-buttons.circle a {
+.module-addfile.circle a {
     --tb_app_r: 50em
 }
 
-.module.module-buttons .transparent {
+.module.module-addfile .transparent {
     border: 0
 }
 
-.module.module-buttons.transparent a.ui {
+.module.module-addfile.transparent a.ui {
     background: 0;
     border: 0;
     --tb_pr_color: var(--tb_pr_bg)
 }
 
-.module.module-buttons.transparent a.tb_default_color {
+.module.module-addfile.transparent a.tb_default_color {
     color: #555
 }
 

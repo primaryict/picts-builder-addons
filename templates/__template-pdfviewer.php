@@ -1,10 +1,9 @@
 <?php
 
+defined('ABSPATH') || exit;
 
 wp_enqueue_script('pdf-js');
 wp_enqueue_script('picts-pdfviewer-tb-addon');
-
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 $fields_default = array(
     'animation_effect' => ''

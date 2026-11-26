@@ -1,5 +1,7 @@
 <?php
 
+defined('ABSPATH') || exit;
+
 /**
  * Adding a shortcode for displaying newsletters in a coloured box on the site.
  */
